@@ -1,0 +1,38 @@
+<!DOCTYPE  html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      lang="en">
+
+<h:head>
+    <meta content="text/html; charset=UTF-8"/>
+    <title>JSF &amp; Bootstrap</title>
+
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+        }
+        tr {
+            border-bottom: 2px solid white;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #045491;
+            color: white;
+        }
+        tr:nth-child(odd) {background-color: azure}
+        tr:nth-child(even) {background-color: aliceblue}
+    </style>
+</h:head>
+
+<h:body>
+    <h1>JSF &amp; Bootstrap</h1>
+    <ui:debug/>
+    <ui:insert name="content"></ui:insert>
+</h:body>
+</html>
