@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Styleguide</title>
+
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+
+</head>
+<body>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!--<script src="js/bootstrap.min.js"></script>-->
+
+    <form>
+        <div class="container">
+
+            <p>
+                <em><small>This is a template illustrating the use of an input and a textarea inside a form; an error message; buttons; and info-icons (TODO).</small></em>
+            </p>
+
+            <h2>Lost &amp; Found</h2>
+
+            <p>
+                What item did you loose?
+            </p>
+
+            <div class="row form-group">
+                <div class="col-xs-12 col-sm-3">
+                    <span class="control-label">Lost item</span>
+                </div>
+                <div class="col-xs-12 col-sm-9">
+                    <input class="form-control" type="text" name="item"/>
+                </div>
+            </div>
+
+            <div class="row form-group has-error">
+                <div class="col-xs-12 col-sm-3">
+                    <span class="control-label">Location</span>
+                </div>
+                <div class="col-xs-12 col-sm-9">
+                    <input class="form-control" type="text" name="item"/>
+                    <span id="helpBlock" class="help-block">Validation error: You must specify the location where you lost the item.</span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-xs-12 col-sm-3">
+                    <span class="control-label">Detailed description</span>
+                </div>
+                <div class="col-xs-12 col-sm-9">
+                    <textarea class="form-control" name="details" rows="6" cols="50"></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-default">Please return my lost item!</button>
+        </div>
+    </form>
+
+</body>
+</html>
