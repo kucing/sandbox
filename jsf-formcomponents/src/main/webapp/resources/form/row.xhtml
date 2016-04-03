@@ -1,0 +1,63 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <composite:interface shortDescription="Template for a form row, assuming a default (configurable) grid layout.">
+        <composite:attribute name="label" type="java.lang.String"/>
+        <composite:attribute name="styleClassLabel" type="java.lang.String" default="col-xs-12 col-sm-3"/>
+        <composite:attribute name="styleClassInput" type="java.lang.String" default="col-xs-12 col-sm-9"/>
+    </composite:interface>
+
+
+    <!-- IMPLEMENTATION -->
+    <composite:implementation>
+
+        <!-- TODO merge f:subview and h:panelGroup into something that:
+
+            * Is a 'flexible' component finder (i.e. findComponent(String) will traverse all children recursively,
+              regardless whether they are a NamingContainer or not).
+            * Preferably it looks up children of type UIInput, instead of having to pass in an id
+              (and thereby introducing an implicit dependency on children having a certain component id 'input').
+            * Can check whether the child(ren?) of type UIInput contains errors (and if so, add css class 'has-error')
+        -->
+
+        <!-- wrap de hele regel in een NamingContainer, zodat .findComponent() niet buiten deze row gaat zoeken. -->
+        <!-- http://stackoverflow.com/questions/3449370/jsf-how-to-create-a-naming-container -->
+        <!-- PROBLEEM: Als 'input' in een andere composite component (=NamingContainer!) zit, dan  -->
+        <f:subview id="row">
+
+            <!-- Als je een standaard jsf tag (een UIInput) gebruikt als child, gaat dit goed: component.findComponent('input') -->
+            <!-- Als je een Klaverblad-component gebruikt (=composite component om een UIInput heen) dan werkt dit niet meer,   -->
+            <!-- je zult dan 'my-comp:input' moeten meegeven (d.w.z. het complete pad van NamingContainer ids) -->
+            <h:panelGroup id="panelGroup"
+                          styleClass="row form-group#{component.findComponent('input').valid?'':' has-error'}"
+                          layout="block"
+                          rendered="#{cc.attrs.rendered}">
+
+                <div class="#{cc.attrs.styleClassLabel}">
+                    <!-- Ook deze .findComponent() vindt niets, als de component in een composite component is gewrapt. -->
+                    <h:outputLabel
+                            id="label"
+                            styleClass="control-label"
+                            for="#{component.findComponent('input').id}"
+                            value="#{cc.attrs.label}"/>
+                </div>
+
+                <div class="#{cc.attrs.styleClassInput}">
+                    <!-- Het wrappen in een panelGroup stelt je in staat om bijv. dit te doen: component.findComponent('children').children[0] -->
+                    <!-- Maar ook dat lost niets op m.b.t. optionele NamingContainers -->
+                    <!--http://stackoverflow.com/questions/6377542/jsf2-composite-components-are-cc-childcount-and-compositeinsertchildren-->
+                    <!--<h:panelGroup id="children">-->
+                    <composite:insertChildren/>
+                    <!--</h:panelGroup>-->
+                </div>
+            </h:panelGroup>
+
+        </f:subview>
+
+    </composite:implementation>
+
+</ui:composition>

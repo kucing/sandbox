@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                template="../template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:form="http://java.sun.com/jsf/composite/form">
+
+    <ui:define name="content">
+        <h:form id="form">
+            <div class="container">
+
+                <p><em>
+                    <small>This form was generated using the composite component 'row'.
+                        It works properly if clicking on a label activates the corresponding input component;
+                        No field errors are visible (i.e. the CSS class 'has-error' is never applied);
+                        All (i) icons are visible and work properly (TODO).
+                    </small>
+                </em></p>
+
+                <h2>Lost &amp; Found</h2>
+
+                <p>What item did you loose?</p>
+
+                <form:row id="rowItem" label="Lost item">
+                    <h:inputText id="input"
+                                 styleClass="form-control"
+                                 required="false"
+                                 requiredMessage="This field is mandatory."/>
+                </form:row>
+
+                <form:row id="rowLocation" label="Location">
+                    <form:inputTextCustom id="inputWrapper"
+                                          styleClass="form-control"
+                                          required="true"
+                                          requiredMessage="This field is mandatory."/>
+                    <!--id="input"
+                         styleClass="form-control"
+                         required="true"
+                         requiredMessage="This field is mandatory."/-->
+                    <!-- TODO who / where / how should the error message be generated? -->
+                    <!--<span id="helpBlock" class="help-block">Validation error: This field is required</span>-->
+                </form:row>
+
+                <form:row id="rowDetails" label="Details">
+                    <h:inputTextarea id="input"
+                                     styleClass="form-control"
+                                     rows="6"
+                                     cols="50"
+                                     required="true"
+                                     requiredMessage="This field is mandatory."/>
+                </form:row>
+
+                <!-- for buttons bars (typically previous / next) we could something similar, for instance form:buttonbar -->
+                <h:button styleClass="btn btn-default"
+                          value="Please return my lost item!"/>
+            </div>
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>

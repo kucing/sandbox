@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <composite:interface>
+        <composite:attribute name="styleClass"/>
+        <composite:attribute name="required" required="true" targets=""/>
+        <composite:attribute name="requiredMessage" required="true" targets=""/>
+    </composite:interface>
+
+    <!-- IMPLEMENTATION -->
+    <composite:implementation>
+        <h:inputText id="input"
+                     styleClass="#{cc.attrs.styleClass}"
+                     required="#{cc.attrs.required}"
+                     requiredMessage="#{cc.attrs.requiredMessage}">
+            <composite:insertChildren/>
+        </h:inputText>
+    </composite:implementation>
+
+</ui:composition>
