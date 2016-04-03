@@ -10,7 +10,7 @@
 </h:head>
 
 <h:body>
-<ui:composition template="../template.xhtml">
+<ui:composition template="../../template.xhtml">
     <ui:define name="content">
         <h2>Chapter 5 - Facelets</h2>
         <div>
@@ -79,8 +79,17 @@
         </ul>
 
         <div>
-            Difference between Wicket and Facelets: It seems that JSF is more feasible when you're dealing with complex layouts,
-            because Wicket templates have only one insertion point (wicket:child) whereas a Facelets template can have many.
+            Difference between Wicket and Facelets:
+            <ul>
+                <li>JSF templating is more powerfull (multiple ui:insert on one page). A Wicket page or component can have only one wicket:child.</li>
+                <li>Wicket markup files resemble the rendered page (&lt;form wicket:id="form"&gt;). JSF markup files are a world apart from the final HTML result
+                with its custom tags (&lt;ui:form id="form"&gt;), EL and excessive response.write()'s in Java code.</li>
+                <li>JSF Managed Beans on the other hand are much more lightweight than Wicket's Component and IModel.</li>
+            </ul>
+
+            <p>
+                Note: JSF 2.2 introduces a much less invasive way of defining markup (you can write &lt;form jsf:id="form"&gt; just like in Wicket).
+            </p>
         </div>
 
     </ui:define>

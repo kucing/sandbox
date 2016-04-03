@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
+                version="2.0">
+
+    <description>
+        Custom tags that support us in defining forms with a consistent markup/layout, through a clean API.
+    </description>
+
+    <namespace>http://helmers.nu/jsf/forms</namespace>
+
+    <tag>
+        <description>
+            <![CDATA[An HtmlPanelGroup that's able to inspect its child(ren) of type UIInput for validity, error messages etc.]]>
+        </description>
+        <tag-name>
+            inputContainer
+        </tag-name>
+        <component>
+            <!-- Refers to the value of the @FacesComponent annotation in InputContainer.java -->
+            <component-type>InputContainer</component-type>
+            <!-- Same as the renderer of the super class HtmlPanelGroup -->
+            <renderer-type>javax.faces.Group</renderer-type>
+        </component>
+        <!-- Below is a copy of all the attributes of the super class of this component (HtmlPanelGroup) -->
+        <!-- Is there a better way to define the attributes that a tag 'inherits' from its super type? -->
+        <attribute>
+            <description>
+                The component identifier for this component. This value must be
+                unique within the closest parent component that is a naming
+                container.
+            </description>
+            <name>id</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                Flag indicating whether or not this component should be rendered
+                (during Render Response Phase), or processed on any subsequent
+                form submit. The default value for this property is true.
+            </description>
+            <name>rendered</name>
+            <required>false</required>
+            <type>boolean</type>
+        </attribute>
+        <attribute>
+            <description>
+                The type of layout markup to use when rendering this group.
+                If the value is "block" the renderer must produce an HTML
+                "div" element. Otherwise HTML "span" element must
+                be produced.
+            </description>
+            <name>layout</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                CSS style(s) to be applied when this component is rendered.
+            </description>
+            <name>style</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                Space-separated list of CSS style class(es) to be applied when
+                this element is rendered. This value must be passed through
+                as the "class" property on generated markup.
+            </description>
+            <name>styleClass</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                The ValueExpression linking this component to a property in a
+                backing bean
+            </description>
+            <name>binding</name>
+            <required>false</required>
+            <type>javax.faces.component.UIComponent</type>
+        </attribute>
+    </tag>
+
+</facelet-taglib>

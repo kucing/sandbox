@@ -2,7 +2,7 @@
 
 ## 1. Goal
 
-Goal: _Create JSF components for quickly developing forms._
+Goal: _Create JSF components for quickly developing forms, in a given corporate style_
 
 A **form** typically:
 * consists of rows of label/control pairs.
