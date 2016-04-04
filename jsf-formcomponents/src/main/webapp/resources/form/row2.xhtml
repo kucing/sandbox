@@ -1,8 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:c="http://java.sun.com/jsp/jstl/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:composite="http://java.sun.com/jsf/composite"
                 xmlns:forms="http://helmers.nu/jsf/forms">
 
@@ -15,30 +13,24 @@
 
     <!-- IMPLEMENTATION -->
     <composite:implementation>
-        <ui:remove><!-- id's should be unique only within this NamingContainer --></ui:remove>
-        <f:subview id="namingContainer">
+        <forms:inputContainer id="inputContainer"
+                              styleClass="row form-group#{component.isGeldig()?'':' has-error'}"
+                              layout="block"
+                              rendered="#{cc.attrs.rendered}">
+            <div class="#{cc.attrs.styleClassLabel}">
+                <h:outputLabel id="label"
+                               styleClass="control-label"
+                               for="#{component.parent.uiInputPath}"
+                               value="#{cc.attrs.label}"/>
+            </div>
+            <div class="#{cc.attrs.styleClassInput}">
+                <composite:insertChildren/>
 
-            <ui:remove>
-                <!-- The EL expressions used below all refer to the InputContainer. -->
-                <!-- If it doesn't work on childs, consider using c:set higher up in the tree. -->
-            </ui:remove>
-
-            <forms:inputContainer id="inputContainer"
-                                  styleClass="row form-group#{component.isGeldig()?'':' has-error'}"
-                                  layout="block"
-                                  rendered="#{cc.attrs.rendered}">
-                <div class="#{cc.attrs.styleClassLabel}">
-                    <h:outputLabel id="label"
-                                   styleClass="control-label"
-                                   for="#{component.parent.uiInputPath}"
-                                   value="#{cc.attrs.label}"/>
-                </div>
-                <div class="#{cc.attrs.styleClassInput}">
-                    <composite:insertChildren/>
-
-                    <h:outputText id="error" styleClass="help-block" value="#{component.getFoutmelding()}" rendered="#{component.isGeldig()}"/>
-                </div>
-            </forms:inputContainer>
-        </f:subview>
+                <h:outputText id="error"
+                              styleClass="help-block#{component.isGeldig()?' geldig':' ongeldig'}"
+                              value="#{component.getFoutmelding()}"
+                              rendered="#{component.isGeldig()}"/>
+            </div>
+        </forms:inputContainer>
     </composite:implementation>
 </ui:composition>

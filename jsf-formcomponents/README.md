@@ -69,3 +69,16 @@ And because of the previous steps, you get everything for free:
 * Start by defining the corporate styleguide (by designers)
 * Create JSF components from scratch (don't use or reuse old stuff)
 * This project contains a custom 'row' component that enforces consistent markup/layout/behavior; we could use it...
+
+## 4. Useful resources
+
+http://balusc.omnifaces.org/2013/01/composite-component-with-multiple-input.html
+
+https://ptrthomas.wordpress.com/2009/05/15/jsf-sucks/
+(zie laatste item [2010-11-18] "I hate JSF with a passion" van James Gosling).
+
+Kan het 'targets' attribuut van composite:attribute worden gebruikt om een attribuut door te geven aan een genest component?
+(i.p.v. alles voluit uit te schrijven met #{cc.attrs.attrnaam})
+http://stackoverflow.com/questions/8672032/composite-component-action-attribute-reutilization
+
+
