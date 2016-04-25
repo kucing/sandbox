@@ -1,14 +1,14 @@
 package nu.helmers.sandbox.activemq.producer;
 
-import java.util.logging.Logger;
+import nu.helmers.sandbox.activemq.common.ActiveMQConstants;
 
 /**  */
 public class Producer1 extends AbstractProducer {
 
-    public static final String QUEUE_NAME = Producer1.class.getSimpleName();
+    public static final String QUEUE_NAME = ActiveMQConstants.QUEUE_NAME_1;
 
-    String getQueueName() {
-        return QUEUE_NAME;
+    public Producer1() {
+        super(QUEUE_NAME);
     }
 
 }

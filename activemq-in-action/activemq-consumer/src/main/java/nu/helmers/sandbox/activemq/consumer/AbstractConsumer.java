@@ -1,36 +1,25 @@
-package nu.helmers.sandbox.activemq.producer;
+package nu.helmers.sandbox.activemq.consumer;
 
-import nu.helmers.sandbox.activemq.common.ActiveMQConstants;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static nu.helmers.sandbox.activemq.common.ActiveMQConstants.BROKER_URL;
 
 /**  */
-public abstract class AbstractProducer {
+public class AbstractConsumer {
 
-    private Logger logger;
+    protected MessageConsumer consumer;
+    protected String queueName;
+    protected Logger logger;
+    protected Connection connection;
+    protected Session session;
 
-    private String queueName;
-    private Connection connection;
-    private Session session;
-    private MessageProducer producer;
-
-    public AbstractProducer(String queueName) {
+    public AbstractConsumer(String queueName) {
         this.queueName = queueName;
         initialize();
-    }
-
-    public void send(String text) {
-        try {
-            logger.info(String.format("Sending message: '%s'", text));
-            Message message = session.createTextMessage(text);
-            producer.send(message);
-        } catch (JMSException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     protected void initialize() {
@@ -39,7 +28,10 @@ public abstract class AbstractProducer {
             connection = connectionFactory.createConnection();
             session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             Queue queue = session.createQueue(queueName);
-            producer = session.createProducer(queue);
+            consumer = session.createConsumer(queue);
+
+            // No messages can be received until connection has 'started'.
+            connection.start();
         } catch (JMSException e) {
             throw new RuntimeException(e);
         }
@@ -49,11 +41,20 @@ public abstract class AbstractProducer {
 
     public void close() {
         try {
-            this.producer.close();
+            this.consumer.close();
             this.session.close();
             this.connection.close();
         } catch (JMSException e) {
             e.printStackTrace();
+        }
+    }
+
+    protected void logMessage(Message message) {
+        try {
+            TextMessage textMessage = (TextMessage) message;
+            logger.info(String.format("Received message: '%s'", textMessage.getText()));
+        } catch (JMSException e) {
+            logger.log(Level.SEVERE, "Error while receiving message.", e);
         }
     }
 }

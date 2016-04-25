@@ -1,5 +1,6 @@
 package nu.helmers.sandbox.activemq.producer;
 
+import nu.helmers.sandbox.activemq.common.ActiveMQConstants;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.fest.assertions.Assertions;
 import org.junit.After;
@@ -33,7 +34,7 @@ public class MessageProducerTest {
     }
 
     private void createConsumer() throws JMSException {
-        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(Producer1.BROKER_URL);
+        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ActiveMQConstants.BROKER_URL);
         connection = connectionFactory.createConnection();
 
         // A JSM connection must be started before consumers can receive messages through it!
