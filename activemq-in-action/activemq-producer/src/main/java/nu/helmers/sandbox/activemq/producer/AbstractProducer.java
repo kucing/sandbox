@@ -5,7 +5,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import javax.jms.*;
 
 /**  */
-public abstract class AbstractMessageProducer {
+public abstract class AbstractProducer {
 
     public static final String BROKER_URL = "tcp://localhost:61616";
 
@@ -13,7 +13,7 @@ public abstract class AbstractMessageProducer {
     private Session session;
     private MessageProducer producer;
 
-    public AbstractMessageProducer() {
+    public AbstractProducer() {
         initialize();
     }
 

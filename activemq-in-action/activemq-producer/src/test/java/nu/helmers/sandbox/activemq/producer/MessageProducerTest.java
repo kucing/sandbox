@@ -11,7 +11,7 @@ import javax.jms.*;
 /**  */
 public class MessageProducerTest {
 
-    private MessageProducer1 producer;
+    private Producer1 producer;
     private Connection connection;
     private Session session;
     private MessageConsumer consumer;
@@ -19,7 +19,7 @@ public class MessageProducerTest {
     @Test
     public void testSend() throws Exception {
         // Code under test
-        producer = new MessageProducer1();
+        producer = new Producer1();
         producer.send("Message sent from unit test " + MessageProducerTest.class.getSimpleName());
 
         // Access JMS API directly, to check whether message has arrived on the queue
@@ -33,14 +33,14 @@ public class MessageProducerTest {
     }
 
     private void createConsumer() throws JMSException {
-        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(MessageProducer1.BROKER_URL);
+        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(Producer1.BROKER_URL);
         connection = connectionFactory.createConnection();
 
         // A JSM connection must be started before consumers can receive messages through it!
         connection.start();
 
         session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        Queue queue = session.createQueue(MessageProducer1.QUEUE_NAME);
+        Queue queue = session.createQueue(Producer1.QUEUE_NAME);
         consumer = session.createConsumer(queue);
     }
 
