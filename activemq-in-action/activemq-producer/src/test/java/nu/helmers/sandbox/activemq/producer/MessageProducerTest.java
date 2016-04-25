@@ -28,7 +28,7 @@ public class MessageProducerTest {
         Message message = consumer.receive(100);
         Assert.assertNotNull("No message received...", message);
         TextMessage textMessage = (TextMessage) message;
-        Assertions.assertThat(textMessage.getText()).startsWith("Message sent from unit test ");
+        Assertions.assertThat(textMessage.getText()).startsWith("Message ");
 //        Assert.fail("Received message is not a TextMessage? Message = " + message);
     }
 

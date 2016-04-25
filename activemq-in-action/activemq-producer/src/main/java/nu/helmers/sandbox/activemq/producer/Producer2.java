@@ -1,5 +1,7 @@
 package nu.helmers.sandbox.activemq.producer;
 
+import java.util.logging.Logger;
+
 /**  */
 public class Producer2 extends AbstractProducer {
 
@@ -8,4 +10,5 @@ public class Producer2 extends AbstractProducer {
     String getQueueName() {
         return QUEUE_NAME;
     }
+
 }

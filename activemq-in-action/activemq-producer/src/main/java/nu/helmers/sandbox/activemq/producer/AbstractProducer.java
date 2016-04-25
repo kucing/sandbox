@@ -3,11 +3,14 @@ package nu.helmers.sandbox.activemq.producer;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
+import java.util.logging.*;
 
 /**  */
 public abstract class AbstractProducer {
 
     public static final String BROKER_URL = "tcp://localhost:61616";
+
+    private Logger logger;
 
     private Connection connection;
     private Session session;
@@ -19,6 +22,7 @@ public abstract class AbstractProducer {
 
     public void send(String text) {
         try {
+            logger.info(String.format("Sending message: '%s'", text));
             Message message = session.createTextMessage(text);
             producer.send(message);
         } catch (JMSException e) {
@@ -36,6 +40,8 @@ public abstract class AbstractProducer {
         } catch (JMSException e) {
             throw new RuntimeException(e);
         }
+
+        logger = Logger.getLogger(this.getClass().getSimpleName());
     }
 
     abstract String getQueueName();

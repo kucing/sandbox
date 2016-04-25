@@ -1,5 +1,7 @@
 package nu.helmers.sandbox.activemq.producer;
 
+import java.util.logging.Logger;
+
 /**  */
 public class Producer1 extends AbstractProducer {
 
